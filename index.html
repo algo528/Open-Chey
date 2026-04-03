@@ -60,10 +60,10 @@
     }
 
     #reject {
-        background: #ff1744;
-        color: white;
-        position: absolute;
-    }
+    background: #ff1744;
+    color: white;
+    position: relative; /* 👈 change this */
+}
 
     #message {
     display: none;
@@ -134,11 +134,15 @@
 const rejectBtn = document.getElementById("reject");
 
 function moveButton() {
+    const btn = document.getElementById("reject");
+
+    btn.style.position = "absolute"; // 👈 make it absolute only when moving
+
     const x = Math.random() * (window.innerWidth - 100);
     const y = Math.random() * (window.innerHeight - 60);
 
-    rejectBtn.style.left = x + "px";
-    rejectBtn.style.top = y + "px";
+    btn.style.left = x + "px";
+    btn.style.top = y + "px";
 }
 
 rejectBtn.addEventListener("mouseover", moveButton);
