@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You 💖</title>
+
+<!-- Beautiful Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+
+        /* 🔥 NEW BEAUTIFUL BACKGROUND */
+        background: linear-gradient(135deg, #43e97b, #38f9d7);
+
+        font-family: 'Poppins', sans-serif;
+        overflow: hidden;
+    }
+
+    h1 {
+        font-size: 48px;
+
+        /* 🔥 Stylish font + color */
+        font-family: 'Dancing Script', cursive;
+        color: #ffffff;
+
+        text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+        animation: fadeIn 2s ease-in-out;
+    }
+
+    .btn-container {
+        margin-top: 30px;
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    button {
+        padding: 14px 30px;
+        font-size: 18px;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: 0.3s;
+        font-weight: 500;
+    }
+
+    #accept {
+        background: #00c853;
+        color: white;
+        animation: bounce 2s infinite;
+    }
+
+    #reject {
+        background: #ff1744;
+        color: white;
+        position: absolute;
+    }
+
+    #message {
+    display: none;
+    margin-top: 40px;
+    font-size: 24px;
+    color: #000000;
+    text-align: center;
+    padding: 0 25px;
+    line-height: 1.6;
+
+    /* typing look */
+    border-right: 3px solid black;
+    white-space: pre-wrap;
+    overflow: hidden;
+
+    animation: fadeIn 1s ease-in-out, blink 1s infinite;
+    }
+
+    button:hover {
+        transform: scale(1.1);
+    }
+
+    @keyframes fadeIn {
+        from {opacity: 0;}
+        to {opacity: 1;}
+    }
+
+    @keyframes bounce {
+        0%, 100% {transform: translateY(0);}
+        50% {transform: translateY(-10px);}
+    }
+    @keyframes blink {
+    0%, 50%, 100% { border-color: black; }
+    25%, 75% { border-color: transparent; }
+}
+
+    /* Mobile */
+    @media (max-width: 600px) {
+        h1 {
+            font-size: 36px;
+        }
+
+        button {
+            font-size: 16px;
+            padding: 12px 25px;
+        }
+
+        #message {
+            font-size: 20px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<h1>Choose One 💭</h1>
+
+<div class="btn-container">
+    <button id="accept" onclick="showMessage()">Accepted</button>
+    <button id="reject">Not Accepted</button>
+</div>
+
+<div id="message"></div>
+<audio id="bgMusic" src="Sorry.mpeg" loop></audio>
+
+<script>
+const rejectBtn = document.getElementById("reject");
+
+function moveButton() {
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 60);
+
+    rejectBtn.style.left = x + "px";
+    rejectBtn.style.top = y + "px";
+}
+
+rejectBtn.addEventListener("mouseover", moveButton);
+rejectBtn.addEventListener("touchstart", moveButton);
+
+const text = `Sorry Mowa 😊
+
+Mowa nik nen dhorikinandhuku nv etla feel ayithavo nak telidhu kani,
+
+You are the best thing that I have in my life ❤️
+
+Luv You Mowa 💗
+
+So Kaallu ippudu indhulo mokkadaniki kudharatle 😅
+ee emoji thoti artham chesko 🙏`;
+
+function showMessage() {
+    let messageDiv = document.getElementById("message");
+    messageDiv.style.display = "block";
+
+    let i = 0;
+
+    function typeChar() {
+        if (i < text.length) {
+            messageDiv.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(typeChar, 80); // typing speed
+        }
+    }
+
+    typeChar();
+
+    // 🎵 play music
+    let music = document.getElementById("bgMusic");
+    music.currentTime = 56;
+    music.play();
+}
+</script>
+
+</body>
+</html>
